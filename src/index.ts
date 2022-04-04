@@ -1,12 +1,36 @@
-import express, { Express, Request, Response } from 'express';
+import { Server } from 'http'
+import { connect, connection } from 'mongoose'
+import { webServer } from './app/web/server/server'
 
-const app: Express = express();
-const port = '3000';
+require('dotenv').config();
 
-app.get('/', (req: Request, res: Response) => {
-  res.send('Express + TypeScript Server');
-});
+async function connectToMongodb () {
+  console.log(process.env['DB_URL']);
+  
+  try {
+    await connect(process.env['DB_URL'] as string)
+  } catch (error) {
+    console.log('Error:', error)
+  }
+}
 
-app.listen(port, () => {
-  console.log(`⚡️[server]: Server is running at https://localhost:${port}`);
-});
+connection.on('connected', () => {
+  console.log('Mongodb connected to: ', connection.db.databaseName)
+})
+
+connection.on('error', (error) => {
+  console.error('error', error)
+})
+
+connection.on('disconnected', () => {
+  console.log('Mongodb disconnected')
+})
+
+export const init = async (appPort: number): Promise<Server> => {
+  void connectToMongodb()
+  return await webServer(appPort)
+}
+
+(async () => {
+  return await init(3000)
+})()
