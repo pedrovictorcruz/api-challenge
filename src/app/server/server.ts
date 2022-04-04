@@ -3,7 +3,7 @@ import { Server } from 'http'
 import cors from 'cors'
 import passport from 'passport'
 import strategyFactory from './auth/passaportStrategy'
-import { UserRoutes } from '../../domain/user/routes'
+import { UserRoutes } from '../domain/user/routes'
 
 const preRoutesMiddlewares = async (app: Express): Promise<void> => {
   app.use(cors())

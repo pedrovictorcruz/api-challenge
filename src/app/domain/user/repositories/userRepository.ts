@@ -12,6 +12,9 @@ export class UserRepository implements UserRepositoryInterface {
   constructor () {
     this.model = UserModel
   }
+  async find (query: any): Promise<any> {
+    
+  }
 
   async create (createUserDto: CreateUserDTO): Promise<User> {
     const userDoc = new UserModel({
@@ -23,18 +26,7 @@ export class UserRepository implements UserRepositoryInterface {
     return result
   }
 
-  async find (query: any): Promise<any> {
-    if (query?.id) {
-      query._id = query.id
-      delete query.id
-    }
-
-    const result = await this.model.find(query)
-
-    if (result.length === 1) {
-      return result[0]
-    }
-
-    return result
-  };
+  async findByEmail (email: string): Promise<User | null> {
+    return this.model.findOne({ email: email }).select('+password')
+  }
 }

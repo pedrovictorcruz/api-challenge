@@ -1,6 +1,6 @@
 import { Server } from 'http'
 import { connect, connection } from 'mongoose'
-import { webServer } from './app/web/server/server'
+import { webServer } from './app/server/server'
 
 require('dotenv').config();
 

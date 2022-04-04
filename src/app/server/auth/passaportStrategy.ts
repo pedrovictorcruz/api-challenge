@@ -1,8 +1,8 @@
 import { Strategy } from 'passport-local'
 import { Strategy as JWTstrategy, ExtractJwt } from 'passport-jwt'
 import bcrypt from 'bcrypt'
-import { UserRepository } from '../../../domain/user/repositories/userRepository'
-import { FindUserUseCase } from '../../../domain/user/useCases/findUser'
+import { UserRepository } from '../../domain/user/repositories/userRepository'
+import { FindUserUseCase } from '../../domain/user/useCases/findUser'
 
 const LocalStrategy = Strategy
 
