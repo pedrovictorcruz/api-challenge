@@ -1,3 +1,4 @@
+import { MongoErrorsCode } from '../../../infrastructure/database/enuns/errors'
 import { CreateUserDTO } from '../dtos/createUserDto'
 import { User } from '../entities/user'
 import { UserRepositoryInterface } from '../repositories/interfaces/userRepositoryInterface'
@@ -7,6 +8,14 @@ export class CreateUserUseCase {
   ) {}
 
   async execute (userDTO: CreateUserDTO): Promise<User> {
-    return await this.userRepository.create(userDTO)
+    try {
+      return await this.userRepository.create(userDTO)
+    } catch (err: any) {
+      if (err.code === MongoErrorsCode.DuplicateError) {
+        throw new Error('E-mail já cadastrado')
+      }
+      
+      throw err
+    }
   }
 }

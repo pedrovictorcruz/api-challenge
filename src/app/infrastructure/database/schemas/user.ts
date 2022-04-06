@@ -1,7 +1,7 @@
 
 import mongoose from 'mongoose'
 import bcrypt from 'bcrypt'
-import { User } from '../../../app/domain/user/entities/user'
+import { User } from '../../../domain/user/entities/user'
 
 export type UserModel = User & Document
 

@@ -7,7 +7,11 @@ export class UserController {
   async create (request: Request, response: Response): Promise<Response> {
     const createUserUseCase = new CreateUserUseCase(new UserRepository())
 
-    const user = await createUserUseCase.execute(request.body as CreateUserDTO)
-    return response.send(user)
+    try {
+      const user = await createUserUseCase.execute(request.body as CreateUserDTO)
+      return response.send(user)
+    } catch (err: any) {
+      return response.status(422).send({ message: err.message }) 
+    }
   }
 }

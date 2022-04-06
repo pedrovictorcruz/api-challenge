@@ -13,7 +13,7 @@ export class LoginController {
 
       if (user) {
         if (bcrypt.compareSync(password, user.password)) {
-          const token = jwt.sign({ user }, process.env['JWT_SECRET'] as string)
+          const token = jwt.sign({ user: {id: user.id} }, process.env['JWT_SECRET'] as string)
           
           return response.json({ token })
         }

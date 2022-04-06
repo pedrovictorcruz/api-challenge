@@ -1,21 +1,21 @@
 
 import { Router } from 'express'
-import { jwtAuthenticator } from '../../server/auth/jwtAuth'
+import AuthMiddleware from '../../middleware/auth'
 import { LoginController } from './controllers/loginController'
 import { UserController } from './controllers/userController'
 
 const router = Router()
 
-const { authenticate: authenticateJWT } = jwtAuthenticator('jwt')
 
 const userController = new UserController()
 const loginController = new LoginController()
 
+const authMiddleware = new AuthMiddleware()
+
 router.post('/users', userController.create)
-// router.get('/users', userController.getUser)
+router.get('/users', authMiddleware.handle, function(req, res) {
+  return res.send(req.user)
+});
 router.post('/login', loginController.login)
-router.get('/profile', authenticateJWT, (_req, res) => {
-  res.send('secured Route')
-})
 
 export { router as UserRoutes}

@@ -1,5 +1,5 @@
 import { Model } from 'mongoose'
-import { UserModel } from '../../../../infrastructure/mongodb/models/user'
+import { UserModel } from '../../../infrastructure/database/schemas/user'
 import { CreateUserDTO } from '../dtos/createUserDto'
 import { User } from '../entities/user'
 import { UserRepositoryInterface } from './interfaces/userRepositoryInterface'
@@ -12,6 +12,10 @@ export class UserRepository implements UserRepositoryInterface {
   constructor () {
     this.model = UserModel
   }
+  async findById (id: string): Promise<User | null> {
+    return this.model.findById(id)
+  }
+
   async find (query: any): Promise<any> {
     
   }

@@ -53,3 +53,4 @@ node_modules/
 ### Node Patch ###
 # Serverless Webpack directories
 .webpack/
+src/app/domain/.DS_Store
