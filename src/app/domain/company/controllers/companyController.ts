@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { CreateCompanyDTO } from "../dtos/createCompanyDto";
 import { CompanyRepository } from "../repositories/companyRepository";
 import CreateCompanyUseCase from "../useCases/createCompany";
+import GetAllCompaniesUseCase from "../useCases/getAllCompanies";
 
 export default class CompanyController {
   async create(request: Request, response: Response) {
@@ -14,5 +15,13 @@ export default class CompanyController {
     } catch (err: any) {
       return response.status(422).send({ message: err.message }) 
     }
+  }
+
+  async getAll(request: Request, response: Response) {
+    const getAllCompaniesUseCase = new GetAllCompaniesUseCase(new CompanyRepository())
+
+    const companies = await getAllCompaniesUseCase.execute()
+
+    return response.send(companies)
   }
 }

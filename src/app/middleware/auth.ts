@@ -8,7 +8,7 @@ export default class AuthMiddleware {
     const authorizationHeader = req.header('Authorization');
 
     if (!authorizationHeader) {
-      return res.status(401).send('Missing Authorization Header')
+      return res.status(401).json({message: 'Missing Authorization Header'})
     }
 
     const token = authorizationHeader.split(' ')[1]

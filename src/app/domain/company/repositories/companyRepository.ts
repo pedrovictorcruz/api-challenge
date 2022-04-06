@@ -24,4 +24,8 @@ export class CompanyRepository implements CompanyRepositoryInterface {
   async findById (id: string): Promise<Company | null> {
     return this.model.findById(id)
   }
+
+  async getAll(): Promise<Company[]> {
+    return this.model.find()
+  }
 }

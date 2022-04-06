@@ -4,6 +4,8 @@ import cors from 'cors'
 import passport from 'passport'
 import { UserRoutes } from '../domain/user/routes'
 import { CompanyRoutes } from '../domain/company/routes'
+import { UnitRoutes } from '../domain/unit/routes'
+import { AssetRoutes } from '../domain/asset/routes'
 
 const preRoutesMiddlewares = async (app: Express): Promise<void> => {
   app.use(cors())
@@ -19,6 +21,8 @@ export const webServer = async (appPort: number): Promise<Server> => {
   await preRoutesMiddlewares(app)
   app.use(UserRoutes)
   app.use(CompanyRoutes)
+  app.use(UnitRoutes)
+  app.use(AssetRoutes)
 
   const server = app.listen(appPort, () => {
     console.log(`WebServer running on port ${appPort}`)
