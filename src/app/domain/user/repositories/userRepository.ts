@@ -23,7 +23,8 @@ export class UserRepository implements UserRepositoryInterface {
   async create (createUserDto: CreateUserDTO): Promise<User> {
     const userDoc = new UserModel({
       email: createUserDto.email,
-      password: createUserDto.password
+      password: createUserDto.password,
+      companyId: createUserDto.companyId
     })
 
     const result = await userDoc.save()

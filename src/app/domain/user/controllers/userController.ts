@@ -9,7 +9,7 @@ export class UserController {
 
     try {
       const user = await createUserUseCase.execute(request.body as CreateUserDTO)
-      return response.send(user)
+      return response.status(200)
     } catch (err: any) {
       return response.status(422).send({ message: err.message }) 
     }

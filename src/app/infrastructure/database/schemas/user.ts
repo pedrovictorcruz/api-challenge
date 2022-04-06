@@ -7,7 +7,8 @@ export type UserModel = User & Document
 
 const userSchema = new mongoose.Schema({
   email: { type: String, required: true, unique: true },
-  password: { type: String, required: true, select: false }
+  password: { type: String, required: true, select: false },
+  companyId: { type: String, required: true }
 }, {
   toJSON: {
     transform: function (_doc, ret) {
