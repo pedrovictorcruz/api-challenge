@@ -3,6 +3,7 @@ import { CreateAssetDTO } from "../dtos/createAssetDto";
 import { AssetRepository } from "../repositories/assetRepository";
 import CreateAssetUseCase from "../useCases/createAsset";
 import GetAllAssetsUseCase from "../useCases/getAllAssets";
+import GetDetailAssetUseCase from "../useCases/getDetailsAsset";
 
 export default class AssetController {
   async create(request: Request, response: Response) {
@@ -23,5 +24,17 @@ export default class AssetController {
     const units = await getAllAssetsUseCase.execute()
 
     return response.send(units)
+  }
+
+  async getDetail(request: Request, response: Response) {
+    const getDetailAssetUseCase = new GetDetailAssetUseCase(new AssetRepository())
+
+    try {
+      const asset = await getDetailAssetUseCase.execute(request.params['id'])
+
+      return response.send(asset)
+    } catch (err: any) {
+      return response.status(422).send({ message: err.message }) 
+    }
   }
 }
