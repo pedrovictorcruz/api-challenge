@@ -3,15 +3,16 @@ import { CreateUnitDTO } from "../dtos/createUnitDTO";
 import { UnitRepository } from "../repositories/unitRepository";
 import CreateUnitUseCase from "../useCases/createUnit";
 import GetAllUnitsUseCase from "../useCases/getAllUnits";
+import GetDetailsUseCase from "../useCases/getDetails";
 
 export default class UnitController {
   async create(request: Request, response: Response) {
     const createUnitUseCase = new CreateUnitUseCase(new UnitRepository())
 
     try {
-      const company = await createUnitUseCase.execute(request.body as CreateUnitDTO)
+      const unit = await createUnitUseCase.execute(request.body as CreateUnitDTO)
       
-      return response.send(company)
+      return response.send(unit)
     } catch (err: any) {
       return response.status(422).send({ message: err.message }) 
     }
@@ -23,5 +24,17 @@ export default class UnitController {
     const units = await getAllUnitsUseCase.execute()
 
     return response.send(units)
+  }
+
+  async getDetails(request: Request, response: Response) {
+    const getDetailsUseCase = new GetDetailsUseCase(new UnitRepository())
+
+    try {
+      const details = await getDetailsUseCase.execute(request.params.id)
+
+      return response.send(details)
+    } catch (err: any) {
+      return response.status(422).send({ message: err.message }) 
+    }
   }
 }

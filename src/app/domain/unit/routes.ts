@@ -8,5 +8,6 @@ const unitController = new UnitController()
 
 router.get('/units', unitController.getAll)
 router.post('/units', unitController.create)
+router.get('/unit/:id', unitController.getDetails)
 
 export { router as UnitRoutes}

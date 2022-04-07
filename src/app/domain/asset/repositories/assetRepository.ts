@@ -28,6 +28,10 @@ export class AssetRepository implements AssetRepositoryInterface {
     return result
   }
 
+  async findByUnitId (unitId: string): Promise<Asset[]> {
+    return this.model.find({unitId: unitId})
+  }
+
   async findById (id: string): Promise<Asset | null> {
     return this.model.findById(id)
   }

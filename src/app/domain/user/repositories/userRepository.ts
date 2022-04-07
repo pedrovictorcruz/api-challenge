@@ -16,10 +16,6 @@ export class UserRepository implements UserRepositoryInterface {
     return this.model.findById(id)
   }
 
-  async find (query: any): Promise<any> {
-    
-  }
-
   async create (createUserDto: CreateUserDTO): Promise<User> {
     const userDoc = new UserModel({
       email: createUserDto.email,
@@ -33,5 +29,9 @@ export class UserRepository implements UserRepositoryInterface {
 
   async findByEmail (email: string): Promise<User | null> {
     return this.model.findOne({ email: email }).select('+password')
+  }
+
+  async findByCompanyId (companyId: string): Promise<User[]> {
+    return this.model.find({ companyId: companyId })
   }
 }

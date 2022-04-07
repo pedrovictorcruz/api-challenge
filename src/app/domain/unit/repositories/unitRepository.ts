@@ -29,4 +29,8 @@ export class UnitRepository implements UnitRepositoryInterface {
   async getAll(): Promise<Unit[]> {
     return this.model.find()
   }
+
+  async findByCompanyId(companyId: string): Promise<Unit[]> {
+    return this.model.find({ companyId: companyId })
+  }
 }
