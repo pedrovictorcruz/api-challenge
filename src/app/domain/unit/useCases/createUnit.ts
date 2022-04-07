@@ -1,4 +1,4 @@
-import { CreateUnitDTO } from "../dtos/createUnitDTO";
+import { CreateUnitDTO } from "../dtos/createUnitDto";
 import { Unit } from "../entities/unit";
 import { UnitRepositoryInterface } from "../repositories/interfaces/unitRepositoryInterface";
 

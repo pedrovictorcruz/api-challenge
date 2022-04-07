@@ -1,6 +1,6 @@
 import { Model } from 'mongoose'
 import { UnitModel } from '../../../infrastructure/database/schemas/unit'
-import { CreateUnitDTO } from '../dtos/createUnitDTO'
+import { CreateUnitDTO } from '../dtos/createUnitDto'
 import { Unit } from '../entities/unit'
 import { UnitRepositoryInterface } from './interfaces/unitRepositoryInterface'
 
