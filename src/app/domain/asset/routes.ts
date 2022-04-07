@@ -1,6 +1,5 @@
 
 import { Router } from 'express'
-import AuthMiddleware from '../../middleware/auth'
 import AssetController from './controllers/assetController'
 
 const router = Router()
