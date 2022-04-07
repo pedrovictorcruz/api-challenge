@@ -26,11 +26,11 @@ connection.on('disconnected', () => {
   console.log('Mongodb disconnected')
 })
 
-export const init = async (appPort: number): Promise<Server> => {
+export const init = async (): Promise<Server> => {
   void connectToMongodb()
-  return await webServer(appPort)
+  return await webServer()
 }
 
 (async () => {
-  return await init(3000)
+  return await init()
 })()

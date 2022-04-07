@@ -15,7 +15,7 @@ const preRoutesMiddlewares = async (app: Express): Promise<void> => {
   app.use(passport.initialize())
 }
 
-export const webServer = async (appPort: number): Promise<Server> => {
+export const webServer = async (): Promise<Server> => {
   const app = express()
 
   await preRoutesMiddlewares(app)
@@ -24,8 +24,8 @@ export const webServer = async (appPort: number): Promise<Server> => {
   app.use(UnitRoutes)
   app.use(AssetRoutes)
 
-  const server = app.listen(appPort, () => {
-    console.log(`WebServer running on port ${appPort}`)
+  const server = app.listen(process.env['APP_PORT'] || 3000, () => {
+    console.log(`WebServer running`)
   })
 
   return server
