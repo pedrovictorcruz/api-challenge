@@ -17,7 +17,7 @@ export default class AssetController {
     }
   }
 
-  async getAll(request: Request, response: Response) {
+  async getAll(response: Response) {
     const getAllAssetsUseCase = new GetAllAssetsUseCase(new AssetRepository())
 
     const units = await getAllAssetsUseCase.execute()

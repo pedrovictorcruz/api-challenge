@@ -14,7 +14,7 @@ export default class AuthMiddleware {
     const token = authorizationHeader.split(' ')[1]
 
     return jwt.verify(
-			token,
+			token as string,
 			process.env['JWT_SECRET'] as string,
 			async function (err, decoded) {
 				if (err) {

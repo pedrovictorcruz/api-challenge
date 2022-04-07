@@ -1,5 +1,4 @@
 import { AssetRepository } from "../../asset/repositories/assetRepository";
-import { AssetRepositoryInterface } from "../../asset/repositories/interfaces/assetRepositoryInterface";
 import { GetUnitDetailsDTO } from "../dtos/getUnitDetailsDto";
 import { Unit } from "../entities/unit";
 import { UnitRepositoryInterface } from "../repositories/interfaces/unitRepositoryInterface";

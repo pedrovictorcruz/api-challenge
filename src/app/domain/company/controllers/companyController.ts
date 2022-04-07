@@ -1,5 +1,4 @@
 import { Request, Response } from "express";
-import { cp } from "fs";
 import { AssetRepository } from "../../asset/repositories/assetRepository";
 import { UnitRepository } from "../../unit/repositories/unitRepository";
 import { UserRepository } from "../../user/repositories/userRepository";
@@ -22,7 +21,7 @@ export default class CompanyController {
     }
   }
 
-  async getAll(request: Request, response: Response) {
+  async getAll(response: Response) {
     const getAllCompaniesUseCase = new GetAllCompaniesUseCase(new CompanyRepository())
 
     const companies = await getAllCompaniesUseCase.execute()
@@ -39,7 +38,7 @@ export default class CompanyController {
         new AssetRepository()
       )
 
-      const details = await getCompanyDetailsUseCase.execute(request.params.id)
+      const details = await getCompanyDetailsUseCase.execute(request.params["id"] as string)
 
       return response.send(details)
     } catch (err: any) {

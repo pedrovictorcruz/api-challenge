@@ -1,6 +1,4 @@
 import { Request, Response } from "express";
-import { AssetRepository } from "../../asset/repositories/assetRepository";
-import { CreateUnitDTO } from "../dtos/createUnitDTO";
 import { UnitRepository } from "../repositories/unitRepository";
 import CreateUnitUseCase from "../useCases/createUnit";
 import GetAllUnitsUseCase from "../useCases/getAllUnits";
@@ -11,7 +9,7 @@ export default class UnitController {
     const createUnitUseCase = new CreateUnitUseCase(new UnitRepository())
 
     try {
-      const unit = await createUnitUseCase.execute(request.body as CreateUnitDTO)
+      const unit = await createUnitUseCase.execute(request.body)
       
       return response.send(unit)
     } catch (err: any) {
@@ -19,7 +17,7 @@ export default class UnitController {
     }
   }
 
-  async getAll(request: Request, response: Response) {
+  async getAll(response: Response) {
     const getAllUnitsUseCase = new GetAllUnitsUseCase(new UnitRepository())
 
     const units = await getAllUnitsUseCase.execute()
@@ -31,7 +29,7 @@ export default class UnitController {
     const getDetailsUseCase = new GetDetailsUseCase(new UnitRepository())
 
     try {
-      const details = await getDetailsUseCase.execute(request.params.id)
+      const details = await getDetailsUseCase.execute(request.params['id'])
 
       return response.send(details)
     } catch (err: any) {
