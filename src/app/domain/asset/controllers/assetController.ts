@@ -30,7 +30,7 @@ export default class AssetController {
     const getDetailAssetUseCase = new GetDetailAssetUseCase(new AssetRepository())
 
     try {
-      const asset = await getDetailAssetUseCase.execute(request.params['id'])
+      const asset = await getDetailAssetUseCase.execute(request.params['id'] as string)
 
       return response.send(asset)
     } catch (err: any) {

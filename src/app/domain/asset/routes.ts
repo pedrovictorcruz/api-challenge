@@ -7,8 +7,6 @@ const router = Router()
 
 const assetController = new AssetController()
 
-const authMiddleware = new AuthMiddleware()
-
 router.get('/assets', assetController.getAll)
 router.post('/assets', assetController.create)
 router.get('/asset/:id', assetController.getDetail)
