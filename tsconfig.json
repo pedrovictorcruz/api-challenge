@@ -6,7 +6,7 @@
     "target": "esnext",
     "module": "commonjs",
     "sourceMap": true,
-    "outDir": "./dist",
+    "outDir": "./app/dist",
     "rootDir": "./",
 
     /* Strict Type-Checking Options */
