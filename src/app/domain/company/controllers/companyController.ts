@@ -21,7 +21,7 @@ export default class CompanyController {
     }
   }
 
-  async getAll(response: Response) {
+  async getAll(_request: Request, response: Response) {
     const getAllCompaniesUseCase = new GetAllCompaniesUseCase(new CompanyRepository())
 
     const companies = await getAllCompaniesUseCase.execute()

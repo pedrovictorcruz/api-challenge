@@ -17,7 +17,7 @@ export default class UnitController {
     }
   }
 
-  async getAll(response: Response) {
+  async getAll(_request: Request, response: Response) {
     const getAllUnitsUseCase = new GetAllUnitsUseCase(new UnitRepository())
 
     const units = await getAllUnitsUseCase.execute()
