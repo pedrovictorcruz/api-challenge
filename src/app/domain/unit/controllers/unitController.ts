@@ -29,7 +29,7 @@ export default class UnitController {
     const getDetailsUseCase = new GetDetailsUseCase(new UnitRepository())
 
     try {
-      const details = await getDetailsUseCase.execute(request.params['id'])
+      const details = await getDetailsUseCase.execute(request.params['id'] as string)
 
       return response.send(details)
     } catch (err: any) {

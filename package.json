@@ -10,7 +10,7 @@
   "author": "Pedro Cruz",
   "license": "MIT",
   "scripts": {
-    "start": "node ./app/dist/src/index.js",
+    "start": "node dist/src/index.js",
     "dev": "nodemon --exec ts-node src/index.ts",
     "test": "jest --passWithNoTests && yarn test:integration",
     "test:watch": "jest --watch",

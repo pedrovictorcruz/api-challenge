@@ -6,7 +6,7 @@
     "target": "esnext",
     "module": "commonjs",
     "sourceMap": true,
-    "outDir": "./app/dist",
+    "outDir": "./dist",
     "rootDir": "./",
 
     /* Strict Type-Checking Options */
@@ -41,7 +41,7 @@
   },
 
   "include": [
-    "./src/app/domain/unit/dtos/createUnitDto.ts"
+    "./src/*"
   ],
   "exclude": [
     "node_modules",
